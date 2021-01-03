@@ -1,6 +1,7 @@
 require 'coinbase.rb'
 require 'account.rb'
 require 'order.rb'
+require 'product.rb'
 
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
@@ -12,13 +13,14 @@ require 'order.rb'
 # request = Coinbase.new
 # account = Account.new
 # order = Order.new
+product = Product.new
 
 
 # GET /accounts
 #
 # begin
 #   response = Coinbase.parse_response(
-#     account.get_account()
+#     accounts.get_account()
 #   )
 #   binding.pry
 #   response
@@ -78,6 +80,7 @@ require 'order.rb'
 #   return err.response
 # end
 
+
 # DELETE /orders/<id>
 #
 # begin
@@ -93,3 +96,54 @@ require 'order.rb'
 #   binding.pry
 #   return err.response
 # end
+
+
+# GET /products/<product-id>/ticker
+#
+# begin
+#   response = JSON.parse(
+#     product.get_ticker("BTC-USD")
+#   )
+#   binding.pry
+#   response
+# rescue RestClient::BadRequest => err
+#   binding.pry
+#   return err.response
+# rescue RestClient:: Unauthorized, RestClient:: Forbidden => err
+#   binding.pry
+#   return err.response
+# end
+
+
+# GET /products/<product-id>/trades
+#
+# begin
+#   response = JSON.parse(
+#     product.get_trades("BTC-USD")
+#   )
+#   binding.pry
+#   response
+# rescue RestClient::BadRequest => err
+#   binding.pry
+#   return err.response
+# rescue RestClient:: Unauthorized, RestClient:: Forbidden => err
+#   binding.pry
+#   return err.response
+# end
+
+
+  # GET /products/<product-id>/candles
+#
+begin
+  response = JSON.parse(
+    product.get_historic_rates("BTC-USD", "3600")
+  )
+  binding.pry
+  response
+rescue RestClient::BadRequest, RestClient::NotFound => err
+  binding.pry
+  return err.response
+rescue RestClient:: Unauthorized, RestClient:: Forbidden => err
+  binding.pry
+  return err.response
+end

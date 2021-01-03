@@ -1,4 +1,3 @@
-require 'coinbase.rb'
 require 'account.rb'
 
 class CAccount < ApplicationRecord

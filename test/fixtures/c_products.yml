@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  crypto: MyString
+  price: 1.5
+  date: 2021-01-03
+
+two:
+  crypto: MyString
+  price: 1.5
+  date: 2021-01-03
