@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  price: 1.5
+  size: 
+  side: MyString
+  product_id: MyString
+  time_in_force: MyString
+  expire_time: 2021-01-05
+  status: MyString
+
+two:
+  price: 1.5
+  size: 
+  side: MyString
+  product_id: MyString
+  time_in_force: MyString
+  expire_time: 2021-01-05
+  status: MyString
