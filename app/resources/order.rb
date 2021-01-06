@@ -9,7 +9,7 @@ class Order < Coinbase
   # GET /orders
   #
   # status = all, open, pending, active
-  # product_id = "BTC-USD", "XLM-USD"
+  # product_id = "BTC-USD", "XLM-USD", etc.
   def get_orders(status='', product_id='')
     timestamp = Time.now.utc.to_i
     method = 'GET'
@@ -55,7 +55,7 @@ class Order < Coinbase
   # cancel_after = "minutes, hours, days"
   # type = limit
   # side = buy/sell
-  # product_id = "BTC-USD", "XLM-USD"
+  # product_id = "BTC-USD", "XLM-USD", etc.
   # price = price of crypto: CRYPTO/USD
   # size = amount of base currency to buy/sell
   def limit_order(time_in_force=nil, cancel_after=nil, side, product_id, price, size)

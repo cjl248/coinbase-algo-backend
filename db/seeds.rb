@@ -10,18 +10,16 @@ require 'product.rb'
 #
 
 
-# request = Coinbase.new
-# account = Account.new
-# order = Order.new
+request = Coinbase.new
+account = Account.new
+order = Order.new
 product = Product.new
 
 
 # GET /accounts
 #
 # begin
-#   response = Coinbase.parse_response(
-#     accounts.get_account()
-#   )
+#   response = JSON.parse(accounts.get_account())
 #   binding.pry
 #   response
 # rescue RestClient::Unauthorized, RestClient::Forbidden => err
@@ -33,9 +31,22 @@ product = Product.new
 # GET /orders
 #
 # begin
-#   response = Coinbase.parse_response(
-#     order.get_orders()
-#   )
+  # response = JSON.parse(order.get_orders())
+#   binding.pry
+#   response
+# rescue RestClient::BadRequest => err
+#   binding.pry
+#   return err.response
+# rescue RestClient::Unauthorized, RestClient::Forbidden => err
+#   binding.pry
+#   return err.response
+# end
+
+
+# GET /fills
+#
+# begin
+#   response = JSON.parse(order.get_fills("BTC-USD"))
 #   binding.pry
 #   response
 # rescue RestClient::BadRequest => err
@@ -50,7 +61,7 @@ product = Product.new
 # POST /orders - market_order
 #
 # begin
-#   response = Coinbase.parse_response(
+#   response = JSON.parse(
 #     order.market_order('buy', 'XLM-USD', false, "0.07")
 #   )
 #   binding.pry
@@ -67,8 +78,8 @@ product = Product.new
 # POST /orders - limit_order
 #
 # begin
-#   response = Coinbase.parse_response(
-#     order.limit_order('GTT', 'day', 'buy', 'XLM-USD', '00.1275', '590')
+#   response = JSON.parse(
+#     order.limit_order('GTT', 'day', 'sell', 'XLM-USD', '00.30', '665')
 #   )
 #   binding.pry
 #   response
@@ -84,7 +95,7 @@ product = Product.new
 # DELETE /orders/<id>
 #
 # begin
-#   response = Coinbase.parse_response(
+#   response = JSON.parse(
 #     order.delete_order('13c8672b-d5c4-4acf-86d9-c80acc0f636d')
 #   )
 #   binding.pry
@@ -132,18 +143,18 @@ product = Product.new
 # end
 
 
-  # GET /products/<product-id>/candles
+# GET /products/<product-id>/candles
 #
-begin
-  response = JSON.parse(
-    product.get_historic_rates("BTC-USD", "3600")
-  )
-  binding.pry
-  response
-rescue RestClient::BadRequest, RestClient::NotFound => err
-  binding.pry
-  return err.response
-rescue RestClient:: Unauthorized, RestClient:: Forbidden => err
-  binding.pry
-  return err.response
-end
+# begin
+#   response = JSON.parse(
+#     product.get_historic_rates("BTC-USD", "3600")
+#   )
+#   binding.pry
+#   response
+# rescue RestClient::BadRequest, RestClient::NotFound => err
+#   binding.pry
+#   return err.response
+# rescue RestClient:: Unauthorized, RestClient:: Forbidden => err
+#   binding.pry
+#   return err.response
+# end
