@@ -10,10 +10,11 @@ class Order < Coinbase
   #
   # status = all, open, pending, active
   # product_id = "BTC-USD", "XLM-USD", etc.
-  def get_orders(status='', product_id='')
+  def get_orders(product_id='', status='')
     timestamp = Time.now.utc.to_i
     method = 'GET'
-    request_path = '/orders'
+    request_path = "/orders?product_id=#{product_id}" if product_id
+    request_path = "/orders" unless request_path
     body = ''
     signature = signature(request_path, body, timestamp, method)
     headers = headers(@key, signature, timestamp, @passphrase)
