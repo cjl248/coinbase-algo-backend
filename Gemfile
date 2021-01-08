@@ -52,3 +52,5 @@ gem "rest-client", "~> 2.1"
 gem "faraday", "~> 1.2"
 
 gem "httparty", "~> 0.18.1"
+
+gem "faye-websocket", "~> 0.11.0"
