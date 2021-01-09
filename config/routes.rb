@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  # get '/c_products/:product-ticker', to: 'c_products#product'
+  get '/c_products/get_bands', to: 'c_products#get_bands'
   resources :c_products
   resources :c_accounts
   resources :c_orders
