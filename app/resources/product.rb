@@ -27,9 +27,11 @@ class Product < Coinbase
   #
   # product_id = "BTC-USD", "XLM-USD"
   # granularity = 86400(1d), 21600(6hrs), 3600(1hr)
+  # returns [ time, low, high, open, close, volume ]
   def get_historic_rates(product_id, granularity)
     request_path = "/products/#{product_id}/candles?granularity=#{granularity}"
-    return RestClient.get(@api+request_path)
+    response = RestClient.get(@api+request_path)
+    response
   end
 
 end
