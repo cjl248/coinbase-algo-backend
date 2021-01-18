@@ -30,8 +30,14 @@ class Product < Coinbase
   # returns [ time, low, high, open, close, volume ]
   def get_historic_rates(product_id, granularity)
     request_path = "/products/#{product_id}/candles?granularity=#{granularity}"
-    response = RestClient.get(@api+request_path)
-    response
+    return RestClient.get(@api+request_path)
+  end
+
+  # GET /products/<product-id>/stats
+  # returns [open, high, low, volume, last, volume_30day]
+  def get_stats(product_id)
+    request_path = "/products/#{product_id}/stats"
+    return RestClient.get(@api+request_path)
   end
 
 end

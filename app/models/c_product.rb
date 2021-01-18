@@ -32,6 +32,44 @@ class CProduct < ApplicationRecord
     end
   end
 
+  def self.get_fibonacci_retracement(product_id, granularity)
+    begin
+      h_response = Product.new.get_historic_rates(product_id, granularity)
+      h_values = JSON.parse(h_response.body)
+      h_max = self.get_high_values(h_values)
+      h_min = self.get_low_values(h_values)
+      h_middle = (h_max+h_min)/2
+      h_object = {max: h_max, middle: h_middle, min: h_min}
+
+      s_response = JSON.parse(Product.new.get_stats(product_id).body)
+      {historical: h_object, day_stats: s_response}
+
+    rescue RestClient::BadRequest, RestClient::NotFound => err
+      return err.response
+    rescue RestClient:: Unauthorized, RestClient:: Forbidden => err
+      return err.response
+    end
+  end
+
+  # [ time, low, high, open, close, volume ]
+  def self.get_high_values(values)
+    highs = values.map { | value | value[2] }
+    max = highs.reduce(0.0) do | high, current |
+      high = current if current > high
+      high unless current > high
+    end
+    max
+  end
+
+  def self.get_low_values(values)
+    lows = values.map { |value| value[1] }
+    min = lows.reduce(Float::INFINITY) do | low, current |
+      low = current if current < low
+      low unless current < low
+    end
+    min
+  end
+
   def self.get_mean(prices)
     daily_averages = prices.map do |day|
       ((day[1].round(2)+day[2].round(2))/2)
