@@ -14,4 +14,9 @@ class CProductsController < ApplicationController
     response = CProduct.get_bands(params['product'], params['granularity'])
     render json: response
   end
+
+  def get_fibonacci_retracement
+    response = CProduct.get_fibonacci_retracement(params['product'], params['granularity'])
+    render json: response
+  end
 end
