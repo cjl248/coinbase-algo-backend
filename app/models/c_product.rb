@@ -42,7 +42,7 @@ class CProduct < ApplicationRecord
       h_object = {max: h_max, middle: h_middle, min: h_min}
 
       s_response = JSON.parse(Product.new.get_stats(product_id).body)
-      {historical: h_object, day_stats: s_response}
+      {historical_stats: h_object, day_stats: s_response}
 
     rescue RestClient::BadRequest, RestClient::NotFound => err
       return err.response
