@@ -22,4 +22,14 @@ class COrder < ApplicationRecord
     end
   end
 
+  def self.place_limit_order(side, product_id, price, size)
+    begin
+      return Order.new.limit_order(nil, nil, side, product_id, price, size)
+    rescue RestClient::BadRequest, RestClient::NotFound => err
+      return err.response
+    rescue RestClient:: Unauthorized, RestClient:: Forbidden => err
+      return err.response
+    end
+  end
+
 end
