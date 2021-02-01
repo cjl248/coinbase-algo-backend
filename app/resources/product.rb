@@ -6,6 +6,13 @@ class Product < Coinbase
     super()
   end
 
+  # GET /products
+  # returns the list of products available
+  def get_product_list
+    request_path = "/products"
+    return RestClient.get(@api+request_path)
+  end
+
   # GET /products/<product-id>/ticker
   #
   # product_id = "BTC-USD", "XLM-USD"

@@ -1,5 +1,10 @@
 class CProductsController < ApplicationController
 
+  def get_list
+    response = CProduct.get_list
+    render json: response
+  end
+
   # URL params[product] = "USD-BTC"
   def index
     response = CProduct.get_price(params['product'])

@@ -2,6 +2,17 @@ require 'product.rb'
 
 class CProduct < ApplicationRecord
 
+  def self.get_list
+    begin
+      response = Product.new.get_product_list.body
+      return self.get_USD_list(JSON.parse(response))
+    rescue RestClient::BadRequest, RestClient::NotFound => err
+      return err.response
+    rescue RestClient:: Unauthorized, RestClient:: Forbidden => err
+      return err.response
+    end
+  end
+
   # GET /products/<product-id>/ticker
   def self.get_price(product_id)
     begin
@@ -50,6 +61,9 @@ class CProduct < ApplicationRecord
       return err.response
     end
   end
+
+
+  private
 
   # [ time, low, high, open, close, volume ]
   def self.get_high_values(values)
@@ -106,6 +120,10 @@ class CProduct < ApplicationRecord
       mean,
       mean + 2*standard_deviation
     ]
+  end
+
+  def self.get_USD_list(all_products)
+    all_products.select { |k, _| k['quote_currency'] == 'USD' }
   end
 
 end
