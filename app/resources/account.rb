@@ -4,6 +4,7 @@ class Account < Coinbase
 
   def initialize()
     super()
+    @sandbox_api = 'https://api-public.sandbox.pro.coinbase.com'
   end
 
   # GET /accounts
@@ -22,8 +23,3 @@ class Account < Coinbase
   end
 
 end
-
-# currency
-# balance
-# hold
-# available
