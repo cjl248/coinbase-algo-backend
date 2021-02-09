@@ -2,8 +2,9 @@ require 'coinbase.rb'
 
 class Order < Coinbase
 
-  def initialize()
+  def initialize
     super()
+    @sandbox_api = 'https://api-public.sandbox.pro.coinbase.com'
   end
 
   # GET /orders
