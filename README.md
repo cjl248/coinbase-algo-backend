@@ -6,31 +6,3 @@ An App that communicate's with Coinbase's REST API and WSS Feed to manage my per
 <br>
 
 This backend hits endpoints on Coinbase's REST API including GET /accounts, GET /orders, POST /orders, DELETE /orders, and GET /fills and serves data as needed for the <a href='https://github.com/cjl248/coinbase-algo-trading/blob/master/README.md'>frontend</a>.
-
-<br><br>
-<br><br>
-
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
