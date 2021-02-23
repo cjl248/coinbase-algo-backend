@@ -22,4 +22,9 @@ class COrdersController < ApplicationController
       render json: { message: 'Incorrect pin' }
     end
   end
+
+  def destroy
+    response = COrder.delete_order(params['id'])
+    render json: response
+  end
 end

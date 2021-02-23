@@ -91,7 +91,7 @@ class Order < Coinbase
   # DELETE /orders/client:<client_oid>
   #
   # id = coinbase order id
-  # client_oid = database created id
+  # client_oid = client id preceeded by 'client:'?
   def delete_order(product_id='', id)
     timestamp = Time.now.utc.to_i
     method = 'DELETE'
