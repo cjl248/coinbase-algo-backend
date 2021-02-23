@@ -32,4 +32,14 @@ class COrder < ApplicationRecord
     end
   end
 
+  def self.delete_order(id)
+    begin
+      return Order.new.delete_order(nil, id)
+    rescue RestClient::BadRequest, RestClient::NotFound => err
+      return err.response
+    rescue RestClient:: Unauthorized, RestClient:: Forbidden => err
+      return err.response
+    end
+  end
+
 end
