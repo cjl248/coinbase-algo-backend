@@ -12,7 +12,7 @@ class CProductsController < ApplicationController
   end
 
   def show
-    binding.pry
+    render json: { message: "In development..." }
   end
 
   def get_bands
