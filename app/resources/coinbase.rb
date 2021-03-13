@@ -2,7 +2,6 @@ require 'base64'
 require 'openssl'
 require 'json'
 require 'rest-client'
-require 'pry'
 
 class Coinbase
 
