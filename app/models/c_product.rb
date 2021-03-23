@@ -33,8 +33,8 @@ class CProduct < ApplicationRecord
       bands_one = self.get_level_one_bands(mean, standard_deviation)
       bands_two = self.get_level_two_bands(mean, standard_deviation)
       return {
-        "level1": bands_one,
-        "level2": bands_two
+        "1 STD": bands_one,
+        "2 STD": bands_two
       }
     rescue RestClient::BadRequest, RestClient::NotFound => err
       return err.response
